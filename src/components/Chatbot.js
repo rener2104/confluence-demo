@@ -43,19 +43,19 @@ const Chatbot = () => {
     const newMessages = [...messages, { from: 'user', text: input, page }];
     setMessages(newMessages);
     setInput('');
-    // Example payload to backend
-    // const response = await fetch('/api/chat', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({
-    //     question: input,
-    //     page,
-    //     pageLabel,
-    //     conversation: newMessages
-    //   })
-    // });
-    // const data = await response.json();
-    // setMessages([...newMessages, { from: 'bot', text: data.answer }]);
+    //Example payload to backend
+    const response = await fetch('35.227.253.21:80/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        question: input,
+        page,
+        pageLabel,
+        conversation: newMessages
+      })
+    });
+    const data = await response.json();
+    setMessages([...newMessages, { from: 'bot', text: data.answer }]);
   };
 
   // Reset chat
